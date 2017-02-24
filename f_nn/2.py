@@ -17,4 +17,10 @@ dataframe.loc[:, ("y2")] = dataframe["y2"].astype(int)    # Turn TRUE/FALSE valu
 inputX = dataframe.loc[:, ['area', 'bathrooms']].as_matrix()
 inputY = dataframe.loc[:, ["y1", "y2"]].as_matrix()
 
-print(inputX)
+# Parameters
+learning_rate = 0.000001
+training_epochs = 2000
+display_step = 50
+n_samples = inputY.size
+
+print(n_samples)

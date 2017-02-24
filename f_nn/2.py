@@ -11,6 +11,8 @@ dataframe.loc[:, ("y1")] = [1, 1, 1, 0, 0, 1, 0, 1, 1, 1] # This is our friend's
 dataframe.loc[:, ("y2")] = dataframe["y1"]==0   # y2 is the negation of y1
 dataframe.loc[:, ("y2")] = dataframe["y2"].astype(int)    # Turn TRUE/FALSE values into 1/0
 
+testdata = pd.read_csv("testdata.csv")
+testX=testdata.loc[:, ['area', 'bathrooms']].as_matrix()
 # y2 means we don't like a house
 # (Yes, it's redundant. But learning to do it this way opens the door to Multiclass classification)
 
@@ -41,4 +43,26 @@ y = tf.nn.softmax(y_values)  # Then we use softmax as an "activation function" t
 
 y_ = tf.placeholder(tf.float32, [None,2])   # For training purposes, we'll also feed you a matrix of labels
 
-print(n_samples)
+# Cost function: Mean squared error
+cost = tf.reduce_sum(tf.pow(y_ - y, 2))/(2*n_samples)
+# Gradient descent
+optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+
+init = tf.global_variables_initializer()
+sess = tf.Session()
+sess.run(init)
+
+for i in range(training_epochs):
+    sess.run(optimizer, feed_dict={x: inputX, y_: inputY}) # Take a gradient descent step using our inputs and labels
+
+    for i in range(training_epochs):
+        sess.run(optimizer,
+                 feed_dict={x: inputX, y_: inputY})  # Take a gradient descent step using our inputs and labels
+print ("Optimization Finished!")
+training_cost = sess.run(cost, feed_dict={x: inputX, y_: inputY})
+# print ("Training cost=", training_cost, "W=", sess.run(W), "b=", sess.run(b), '\n')
+
+print(sess.run(y, feed_dict={x: testX}))
+
+
+# print(n_samples)

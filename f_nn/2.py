@@ -39,4 +39,6 @@ y_values = tf.add(tf.matmul(x, W), b)  # The first step in calculating the predi
 y = tf.nn.softmax(y_values)  # Then we use softmax as an "activation function" that translates the
 # numbers outputted by the previous layer into probability form
 
+y_ = tf.placeholder(tf.float32, [None,2])   # For training purposes, we'll also feed you a matrix of labels
+
 print(n_samples)

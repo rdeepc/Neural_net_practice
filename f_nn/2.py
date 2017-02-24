@@ -23,4 +23,15 @@ training_epochs = 2000
 display_step = 50
 n_samples = inputY.size
 
+x = tf.placeholder(tf.float32, [None, 2])  # Okay TensorFlow, we'll feed you an array of examples. Each example will
+# be an array of two float values (area, and number of bathrooms).
+# "None" means we can feed you any number of examples
+# Notice we haven't fed it the values yet
+
+W = tf.Variable(tf.zeros([2, 2]))  # Maintain a 2 x 2 float matrix for the weights that we'll keep updating
+# through the training process (make them all zero to begin with)
+
+b = tf.Variable(tf.zeros([2]))              # Also maintain two bias values
+
+
 print(n_samples)

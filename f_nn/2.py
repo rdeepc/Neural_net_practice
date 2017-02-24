@@ -33,5 +33,10 @@ W = tf.Variable(tf.zeros([2, 2]))  # Maintain a 2 x 2 float matrix for the weigh
 
 b = tf.Variable(tf.zeros([2]))              # Also maintain two bias values
 
+y_values = tf.add(tf.matmul(x, W), b)  # The first step in calculating the prediction would be to multiply
+# the inputs matrix by the weights matrix then add the biases
+
+y = tf.nn.softmax(y_values)  # Then we use softmax as an "activation function" that translates the
+# numbers outputted by the previous layer into probability form
 
 print(n_samples)

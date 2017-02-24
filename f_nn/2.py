@@ -14,4 +14,7 @@ dataframe.loc[:, ("y2")] = dataframe["y2"].astype(int)    # Turn TRUE/FALSE valu
 # y2 means we don't like a house
 # (Yes, it's redundant. But learning to do it this way opens the door to Multiclass classification)
 
-print(dataframe)
+inputX = dataframe.loc[:, ['area', 'bathrooms']].as_matrix()
+inputY = dataframe.loc[:, ["y1", "y2"]].as_matrix()
+
+print(inputX)
